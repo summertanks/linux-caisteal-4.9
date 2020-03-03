@@ -58,7 +58,7 @@ Cloning Sourcecode
 --------------------------------------------------------------------------------------------------------------
 Create own repo
     # remove original .git - the exact folder names may change
-    cd ~/CaistealOS-MKII/build/tmp/work/imx6ulevk-poky-linux-gnueabi/u-boot-fslc/v2019.07+gitAUTOINC+ca0ab15271-r0/git 
+    cd ~/CaistealOS-MKII/build/tmp/work/imx6ulevk-poky-linux-gnueabi/linux-fslc-imx/4.9-1.0.x+gitAUTOINC+953c6e30c9-r0/git
     rm -rf .git
     
     Modify .gitignore to add /.pc/* after the last line
@@ -69,7 +69,7 @@ Create own repo
     git commit -m "Initial Vesion"
     
     # change the git name as required
-    git remote add origin https://github.com/summertanks/CaistealMKII-uboot.git
+    git remote add origin https://github.com/summertanks/CaistealMKII-linux-fslc.git
     git push -u origin master
 
     # change branch to Zeus, maintain master as it is
@@ -77,9 +77,62 @@ Create own repo
     git push origin zeus
     git checkout zeus
 
+----------------------------------------------------------------------------------------------------------------
+    
+    make clean
+    make imx_v7_defconfig
+    make -j4 zImage imx6q-sabresd.dtb
+
 ------------------------------------------------------------------------------------------------------------------
 
 Create new board
+    Searching for files to modify - grep -ri "TARGET_MX6"
+
+    # Modify arch/arm/boot/dts/Makefile to add the line under the section
+	dtb-$(CONFIG_SOC_IMX6UL) += \
+        	imx6ul-caisteal.dtb \
+		...
+
+    # Copy and modift dts file
+    cp arch/arm/boot/dts/imx6ul-14x14-evk.dts arch/arm/boot/dts/imx6ul-caisteal.dts
+    
+    Modify imx6ul-caisteal.dts    
+	model = "Freescale i.MX6 UltraLite 14x14 Caisteal";
+        compatible = "fsl,imx6ul-caisteal", "fsl,imx6ul";
+
+    # rerun compile
+	make -j4 zImage imx6ul-caisteal.dtb
+    # creates two import files
+	Device tree - arch/arm/boot/dts/imx6ul-caisteal.dtb
+	Image	    - arch/arm/boot/zImage
+
+    # copy file to /tfp
+
+    # download and boot - from uboot menu
+	setenv serverip <ip>
+	tftp 0x10800000 zImage
+	tftp 0x18000000 imx6ul-caisteal.dtb
+	bootz 0x10800000 - 0x18000000
+
+
+
+
+    # Pin selection
+	arch/arm/boot/dts/imx6ul-pinfunc.h
+    # select and modify 
+	arch/arm/boot/dts/imx6ul-caisteal.dts
+	
+	confirm and check all pins
+
+
+
+
+
+
+
+
+
+
     Searching for files to modify - grep -ri "TARGET_MX6"
 
     # Modify arch/arm/mach-imx/mx6/Kconfig and add a section and nake of Kconfig
