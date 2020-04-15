@@ -207,23 +207,3 @@ DDR3 Calibration
     (DDR3 Stress tester)
 
 ----------------------------------------------------------------------------------------------------------
-
-Files Modified
-
-arch/arm/mach-imx/mx6/Kconfig
-
-board/caisteal/mx6caisteal/Kconfig
-board/caisteal/mx6caisteal/MAINTAINERS
-board/caisteal/mx6caisteal/Makefile
-board/caisteal/mx6caisteal/mx6caisteal.c
-board/caisteal/mx6caisteal/README
-board/caisteal/common/pfuze.c
-board/caisteal/common/pfuze.h
-board/caisteal/common/Mafefile
-
-include/configs/mx6caisteal.h
-
-arch/arm/dts/imx6ul-caisteal.dts
-
-configs/mx6caisteal_defconfig
-
