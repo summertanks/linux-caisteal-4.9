@@ -78,6 +78,12 @@ Create own repo
     git checkout zeus
 
 ----------------------------------------------------------------------------------------------------------------
+Modified Files
+	
+	F arch/arm/boot/dts/Makefile
+	F arch/arm/boot/dts/imx6ul-caisteal.dtb
+
+----------------------------------------------------------------------------------------------------------------
     
     make clean
     make imx_v7_defconfig
