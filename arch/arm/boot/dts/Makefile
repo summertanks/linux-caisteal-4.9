@@ -481,6 +481,7 @@ dtb-$(CONFIG_SOC_IMX6SX) += \
 	imx6sxscm-epop-evb-ldo.dtb \
 	imx6sxscm-epop-evb-m4-ldo.dtb
 dtb-$(CONFIG_SOC_IMX6UL) += \
+	imx6ul-caisteal.dtb \
 	imx6ul-14x14-evk.dtb \
 	imx6ul-14x14-evk-btwifi.dtb \
 	imx6ul-14x14-evk-btwifi-oob.dtb \
