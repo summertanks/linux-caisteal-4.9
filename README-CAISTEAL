@@ -82,7 +82,7 @@ Modified Files
 	
 	F arch/arm/boot/dts/Makefile
 	F arch/arm/boot/dts/imx6ul-caisteal.dtb
-
+	F arch/arm/configs/imx6ul_caisteal_defconfig
 ----------------------------------------------------------------------------------------------------------------
     
     make clean
